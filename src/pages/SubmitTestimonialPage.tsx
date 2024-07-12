@@ -3,7 +3,7 @@ import SubmitTestimonial from '../components/Testimonial/SubmitTestimonial';
 
 const SubmitTestimonialPage: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-900">
+    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-900 p-4">
       <SubmitTestimonial />
     </div>
   );

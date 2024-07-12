@@ -1,5 +1,3 @@
-// src/pages/ContactUs.tsx
-
 import React from 'react';
 import { FaWhatsapp, FaEnvelope } from 'react-icons/fa';
 import useStrings from '../hooks/useStrings';
@@ -9,7 +7,7 @@ const ContactUs: React.FC = () => {
 
   return (
     <div className="bg-neutral-dark py-12 min-h-screen flex flex-col">
-      <div className="container mx-auto flex flex-1 flex-col lg:flex-row items-start space-y-8 lg:space-y-0 lg:space-x-12">
+      <div className="container mx-auto px-4 flex flex-1 flex-col lg:flex-row items-start space-y-8 lg:space-y-0 lg:space-x-12">
         <div className="lg:w-1/3 text-white">
           <h1 className="text-white text-4xl font-bold mb-4">{contact.title}</h1>
           <p className="text-lg leading-relaxed mb-4">

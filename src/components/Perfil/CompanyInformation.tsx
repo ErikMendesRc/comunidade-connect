@@ -52,13 +52,11 @@ const CompanyInformation: React.FC<CompanyInformationProps> = ({ uid }) => {
   };
 
   return (
-    <div className="bg-gray-800 text-white rounded-lg shadow-md overflow-hidden p-6">
+    <div className="bg-gray-800 text-white rounded-lg shadow-md overflow-hidden p-6 mb-6">
       <div className="mb-6">
-        <h2 className="text-2xl font-semibold text-white">{strings.title}</h2>
+        <h2 className="text-2xl font-semibold">{strings.title}</h2>
         <h3 className="mt-4 text-xl font-medium text-gray-400">{strings.aboutCompany}</h3>
-        <p className="mt-2 text-gray-300">
-          {companyData.bio}
-        </p>
+        <p className="mt-2 text-gray-300">{companyData.bio}</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>

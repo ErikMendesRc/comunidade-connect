@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { getFirestore, deleteDoc, doc } from 'firebase/firestore';
+import { getFirestore, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { User } from '../models/User';
 import { getAllUsers } from '../services/firebaseService';
+import Switch from '@mui/material/Switch';
 
 const ManageUsers: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -37,6 +38,17 @@ const ManageUsers: React.FC = () => {
     }
   };
 
+  const handleToggleSuperAdmin = async (userId: string, isSuperAdmin: boolean) => {
+    try {
+      const userDoc = doc(firestore, 'users', userId);
+      await updateDoc(userDoc, { superadmin: isSuperAdmin });
+      setUsers(users.map(user => (user.uid === userId ? { ...user, superadmin: isSuperAdmin } : user)));
+    } catch (error) {
+      console.error('Erro ao atualizar superadmin:', error);
+      alert('Erro ao atualizar superadmin.');
+    }
+  };
+
   const filteredUsers = users.filter(user =>
     (`${user.name} ${user.lastName}`).toLowerCase().includes(searchTerm.toLowerCase()) ||
     user.email.toLowerCase().includes(searchTerm.toLowerCase())
@@ -53,8 +65,8 @@ const ManageUsers: React.FC = () => {
       <div className="container mx-auto p-4 flex-grow">
         <h1 className="text-2xl font-bold mb-4 text-white">Gerenciar Membros</h1>
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg p-4 bg-gray-800">
-          <div className="flex items-center justify-between flex-col md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900 rounded-lg">
-            <div className="relative mt-2 ml-2">
+          <div className="flex flex-col md:flex-row justify-between items-center pb-4 bg-white dark:bg-gray-900 rounded-lg p-4">
+            <div className="relative mt-2 md:mt-0">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg
                   className="w-4 h-4 text-gray-500 dark:text-gray-400"
@@ -65,9 +77,9 @@ const ManageUsers: React.FC = () => {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
                   />
                 </svg>
@@ -75,32 +87,35 @@ const ManageUsers: React.FC = () => {
               <input
                 type="text"
                 id="table-search-users"
-                className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="block w-full md:w-80 p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Search for users"
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
               />
             </div>
           </div>
-          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-4">
+          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-2 md:px-6 py-3">
                   Profile Picture
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-2 md:px-6 py-3">
                   Name
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-2 md:px-6 py-3">
                   Email
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-2 md:px-6 py-3">
                   Position
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-2 md:px-6 py-3">
                   Company
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-2 md:px-6 py-3">
+                  Super Admin
+                </th>
+                <th scope="col" className="px-2 md:px-6 py-3">
                   Action
                 </th>
               </tr>
@@ -111,26 +126,33 @@ const ManageUsers: React.FC = () => {
                   key={user.uid}
                   className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                 >
-                  <td className="px-6 py-4">
+                  <td className="px-2 md:px-6 py-4">
                     <img
                       className="w-10 h-10 rounded-full"
                       src={user.profilePicture || 'https://via.placeholder.com/150'}
                       alt={`${user.name} image`}
                     />
                   </td>
-                  <td className="px-6 py-4 text-gray-900 dark:text-white">
+                  <td className="px-2 md:px-6 py-4 text-gray-900 dark:text-white">
                     {user.name} {user.lastName}
                   </td>
-                  <td className="px-6 py-4 text-gray-500 dark:text-gray-400">
+                  <td className="px-2 md:px-6 py-4 text-gray-500 dark:text-gray-400">
                     {user.email}
                   </td>
-                  <td className="px-6 py-4 text-gray-500 dark:text-gray-400">
+                  <td className="px-2 md:px-6 py-4 text-gray-500 dark:text-gray-400">
                     {user.role}
                   </td>
-                  <td className="px-6 py-4 text-gray-500 dark:text-gray-400">
+                  <td className="px-2 md:px-6 py-4 text-gray-500 dark:text-gray-400">
                     {user.company}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-2 md:px-6 py-4">
+                    <Switch
+                      checked={user.superadmin || false}
+                      onChange={(e) => handleToggleSuperAdmin(user.uid, e.target.checked)}
+                      color="primary"
+                    />
+                  </td>
+                  <td className="px-2 md:px-6 py-4">
                     <button
                       onClick={() => handleDeleteUser(user.uid)}
                       className="font-medium text-red-600 dark:text-red-500 hover:underline"

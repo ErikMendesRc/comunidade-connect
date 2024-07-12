@@ -34,8 +34,8 @@ const MessagesPage: React.FC = () => {
   }
 
   return (
-    <div className="flex min-h-screen bg-neutral-light">
-      <div className="w-1/4 bg-gray-900 p-4">
+    <div className="flex flex-col md:flex-row min-h-screen bg-neutral-light">
+      <div className="w-full md:w-1/4 bg-gray-900 p-4">
         <h1 className="text-2xl font-bold text-white mb-4">Messages</h1>
         <div className="space-y-4">
           {chats.length === 0 ? (

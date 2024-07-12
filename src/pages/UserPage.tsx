@@ -50,9 +50,11 @@ const UserPage: React.FC = () => {
   }
 
   return (
-    <div className="flex min-h-screen bg-neutral-dark">
-      <Sidebar />
-      <div className="flex-1 p-4 grid grid-cols-1 lg:grid-cols-3 gap-4 bg-primary ml-64">
+    <div className="flex flex-col md:flex-row min-h-screen bg-neutral-dark">
+      <div className="fixed md:relative z-10">
+        <Sidebar />
+      </div>
+      <div className="flex-1 p-4 grid grid-cols-1 lg:grid-cols-3 gap-4 bg-primary md:ml-64">
         <div className="lg:col-span-1 space-y-4">
           <UserProfile uid={uid || auth.currentUser?.uid} />
           <Skills uid={uid || auth.currentUser?.uid} />

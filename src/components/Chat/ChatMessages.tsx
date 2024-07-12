@@ -15,9 +15,7 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({ chatId }) => {
   const auth = getAuth();
 
   useEffect(() => {
-    console.log("Setting up listener for messages");
     const unsubscribe = listenForMessages(chatId, async (messages, participants) => {
-      console.log("Received messages:", messages);
       setMessages(messages);
 
       // Fetch participant profiles
@@ -31,7 +29,6 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({ chatId }) => {
 
     // Marcar as mensagens como lidas quando o componente é montado
     if (auth.currentUser) {
-      console.log("Marking messages as read for user:", auth.currentUser.uid);
       markMessagesAsRead(chatId, auth.currentUser.uid);
     }
 
@@ -50,7 +47,6 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({ chatId }) => {
         photoURL: user.photoURL || '',
         createdAt: new Date().toISOString()
       };
-      console.log("Sending message:", message);
       await sendMessage(chatId, message, [user.uid]);
       setNewMessage('');
     }

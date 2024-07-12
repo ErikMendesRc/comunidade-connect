@@ -49,7 +49,7 @@ const ChatPage: React.FC = () => {
       <div className="flex-1 overflow-y-auto p-4">
         {messages.map((message) => (
           <div key={message.id} className={`flex ${message.uid === auth.currentUser?.uid ? 'justify-end' : 'justify-start'} mb-4`}>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 max-w-xs sm:max-w-md lg:max-w-lg">
               <img className="w-10 h-10 rounded-full" src={message.photoURL || 'https://via.placeholder.com/50'} alt={message.displayName} />
               <div className={`p-4 rounded-lg ${message.uid === auth.currentUser?.uid ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-900'}`}>
                 <p>{message.text}</p>
@@ -58,7 +58,7 @@ const ChatPage: React.FC = () => {
           </div>
         ))}
       </div>
-      <div className="p-4 bg-gray-100 flex">
+      <div className="p-4 bg-gray-100 flex items-center">
         <input 
           type="text" 
           value={newMessage} 

@@ -4,7 +4,7 @@ import { getUserData } from '../../services/firebaseService';
 import useStrings from '../../hooks/useStrings';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBriefcase, faBirthdayCake, faBuilding, faCalendar } from '@fortawesome/free-solid-svg-icons';
-import { faLinkedin } from '@fortawesome/free-brands-svg-icons'; // Importando do pacote correto
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 interface GeneralInformationProps {
   uid?: string;
@@ -48,13 +48,11 @@ const GeneralInformation: React.FC<GeneralInformationProps> = ({ uid }) => {
   }
 
   return (
-    <div className="bg-gray-800 text-white rounded-lg shadow-md overflow-hidden p-6">
+    <div className="bg-gray-800 text-white rounded-lg shadow-md overflow-hidden p-6 mb-6">
       <div className="mb-6">
-        <h2 className="text-2xl font-semibold text-white">{strings.title}</h2>
+        <h2 className="text-2xl font-semibold">{strings.title}</h2>
         <h3 className="mt-4 text-xl font-medium text-gray-400">{strings.aboutMe}</h3>
-        <p className="mt-2 text-gray-300">
-          {userData.bio || strings.bio}
-        </p>
+        <p className="mt-2 text-gray-300">{userData.bio || strings.bio}</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>

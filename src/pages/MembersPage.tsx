@@ -9,7 +9,7 @@ const MembersPage: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 9; // Número de itens por página
+  const itemsPerPage = 9;
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -35,7 +35,7 @@ const MembersPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-neutral-dark p-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {currentPageData.map(user => (
           <Link key={user.uid} to={`/profile/${user.uid}`} className="no-underline">
             <MemberCard user={user} />
