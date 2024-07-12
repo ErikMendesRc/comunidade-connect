@@ -43,10 +43,10 @@ const MemberCard: React.FC<MemberCardProps> = ({ user }) => {
         <div className="relative">
           <img className="w-24 h-24 object-cover object-center rounded-full" src={user.profilePicture || 'https://via.placeholder.com/150'} alt="avatar" />
         </div>
-        <h1 className="text-xl font-bold mt-2">{user.role.toUpperCase()}</h1>
+        <h1 className="text-xl font-bold mt-2">{user.role?.toUpperCase() || 'ROLE'}</h1>
       </div>
       <div className="py-4 px-6 flex-grow">
-        <h1 className="text-xl font-bold">{user.name.toUpperCase()} {user.lastName.toUpperCase()}</h1>
+        <h1 className="text-xl font-bold">{user.name?.toUpperCase() || 'NOME'} {user.lastName?.toUpperCase() || 'SOBRENOME'}</h1>
         <p className="text-lg text-gray-400">{user.company}</p>
         <div className="mt-4">
           <h3 className="text-sm font-medium text-gray-400">Cidade</h3>
