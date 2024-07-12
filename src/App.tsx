@@ -20,7 +20,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App: React.FC = () => {
-  console.log('API Key:', process.env.REACT_APP_API_KEY);
 
   return (
     <Router>

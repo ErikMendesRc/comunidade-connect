@@ -20,7 +20,7 @@ const ChatList: React.FC = () => {
   }, [auth.currentUser]);
 
   return (
-    <div className="w-1/4 bg-gray-800 text-white h-full p-4 overflow-y-auto">
+    <div className="w-full md:w-1/4 bg-gray-800 text-white h-full p-4 overflow-y-auto">
       <h2 className="text-lg font-bold mb-4">Chats</h2>
       {chats.map(chat => (
         <Link key={chat.id} to={`/chat/${chat.id}`} className="block mb-4 p-2 bg-gray-700 rounded-lg hover:bg-gray-600">

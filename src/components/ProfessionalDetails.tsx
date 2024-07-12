@@ -19,7 +19,7 @@ const ProfessionalDetails: React.FC<{ formData: any, handleChange: any, formik: 
               type="text"
               value={formData.location}
               onChange={handleChange}
-              onBlur={handleChange} // Adicionar onBlur para validação no blur
+              onBlur={formik.handleBlur}
               className={`bg-gray-50 border ${formik.touched.location && formik.errors.location ? 'border-red-500' : 'border-gray-300'} text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full pl-10 p-2.5 dark:bg-neutral-dark dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-highlight dark:focus:border-highlight`}
               placeholder={registerForm.enterLocation}
             />
@@ -39,7 +39,7 @@ const ProfessionalDetails: React.FC<{ formData: any, handleChange: any, formik: 
               type="text"
               value={formData.company}
               onChange={handleChange}
-              onBlur={handleChange} // Adicionar onBlur para validação no blur
+              onBlur={formik.handleBlur}
               className={`bg-gray-50 border ${formik.touched.company && formik.errors.company ? 'border-red-500' : 'border-gray-300'} text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full pl-10 p-2.5 dark:bg-neutral-dark dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-highlight dark:focus:border-highlight`}
               placeholder={registerForm.enterCompany}
             />
@@ -59,7 +59,7 @@ const ProfessionalDetails: React.FC<{ formData: any, handleChange: any, formik: 
               type="text"
               value={formData.role}
               onChange={handleChange}
-              onBlur={handleChange} // Adicionar onBlur para validação no blur
+              onBlur={formik.handleBlur}
               className={`bg-gray-50 border ${formik.touched.role && formik.errors.role ? 'border-red-500' : 'border-gray-300'} text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full pl-10 p-2.5 dark:bg-neutral-dark dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-highlight dark:focus:border-highlight`}
               placeholder={registerForm.enterRole}
             />
@@ -79,7 +79,7 @@ const ProfessionalDetails: React.FC<{ formData: any, handleChange: any, formik: 
               type="text"
               value={formData.years}
               onChange={handleChange}
-              onBlur={handleChange} // Adicionar onBlur para validação no blur
+              onBlur={formik.handleBlur}
               className={`bg-gray-50 border ${formik.touched.years && formik.errors.years ? 'border-red-500' : 'border-gray-300'} text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full pl-10 p-2.5 dark:bg-neutral-dark dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-highlight dark:focus:border-highlight`}
               placeholder={registerForm.enterYears}
             />
@@ -99,7 +99,7 @@ const ProfessionalDetails: React.FC<{ formData: any, handleChange: any, formik: 
               type="text"
               value={formData.linkedin}
               onChange={handleChange}
-              onBlur={handleChange} // Adicionar onBlur para validação no blur
+              onBlur={formik.handleBlur}
               className={`bg-gray-50 border ${formik.touched.linkedin && formik.errors.linkedin ? 'border-red-500' : 'border-gray-300'} text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full pl-10 p-2.5 dark:bg-neutral-dark dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-highlight dark:focus:border-highlight`}
               placeholder={registerForm.enterLinkedin}
             />

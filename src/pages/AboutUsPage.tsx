@@ -1,17 +1,15 @@
-// src/pages/AboutUs.tsx
-
 import React from 'react';
 import { FaLinkedin, FaInstagram } from 'react-icons/fa';
 
 const AboutUs: React.FC = () => {
   return (
     <div className="bg-neutral-dark py-12">
-      <div className="container mx-auto flex flex-col lg:flex-row items-center">
+      <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center">
         <div className="lg:w-1/2 flex flex-col items-center mb-8 lg:mb-0">
-          <div className="overflow-hidden rounded-lg shadow-lg w-80 h-auto">
+          <div className="overflow-hidden rounded-lg shadow-lg w-full max-w-xs lg:max-w-md h-auto">
             <img src="/founder.png" alt="Founder" className="w-full h-auto object-cover"/>
           </div>
-          <p className="text-white text-sm mt-2">Fundador da Connect: Guilherme Arebalo</p>
+          <p className="text-white text-sm mt-2 text-center">Fundador da Connect: Guilherme Arebalo</p>
           <div className="flex justify-center space-x-4 mt-2">
             <a href="https://www.linkedin.com/in/guilherme-arebalo-607112236/" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:text-blue-800">
               <FaLinkedin size={30} />

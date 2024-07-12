@@ -7,7 +7,7 @@ const RegisterPage: React.FC = () => {
 
   return (
     <section className="bg-neutral-light dark:bg-neutral-dark min-h-screen flex items-center justify-center">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0 lg:space-x-6 w-full sm:max-w-2xl">
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0 w-full sm:max-w-2xl">
         <div className="flex flex-col items-center justify-center text-white p-6 space-y-6 mb-6">
           <img src="/connect.svg" className="h-12 w-auto" alt={header.logoAlt} />
         </div>

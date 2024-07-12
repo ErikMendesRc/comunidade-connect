@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getAuth, User } from 'firebase/auth';
 import { getUserData, updateUserProfile } from '../../services/firebaseService';
 import useStrings from '../../hooks/useStrings';
+import { Alert, Snackbar, CircularProgress } from '@mui/material';
 
 const EditGeneralInformation: React.FC = () => {
   const strings = useStrings().registerForm;
@@ -10,6 +11,7 @@ const EditGeneralInformation: React.FC = () => {
     company: '',
     contact: '',
     linkedin: '',
+    instagram: '',  // Novo campo para Instagram
     country: '',
     name: '',
     profilePicture: '',
@@ -44,6 +46,7 @@ const EditGeneralInformation: React.FC = () => {
               company: data.company || '',
               contact: data.contact || '',
               linkedin: data.linkedin || '',
+              instagram: data.instagram || '',  // Novo campo para Instagram
               country: data.country || '',
               name: data.name || '',
               profilePicture: data.profilePicture || '',
@@ -90,15 +93,23 @@ const EditGeneralInformation: React.FC = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-32">
+        <CircularProgress color="inherit" />
+      </div>
+    );
   }
 
   return (
     <div className="bg-gray-800 text-white rounded-lg shadow-md p-6 mb-4">
+      <Snackbar open={alertVisible} autoHideDuration={3000} onClose={() => setAlertVisible(false)}>
+        <Alert onClose={() => setAlertVisible(false)} severity="success" sx={{ width: '100%' }}>
+          Dados salvos com sucesso!
+        </Alert>
+      </Snackbar>
       <h2 className="text-2xl font-semibold mb-4">{strings.generalInformation}</h2>
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Outros campos do formulário */}
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-400">{strings.name}</label>
             <input
@@ -220,6 +231,16 @@ const EditGeneralInformation: React.FC = () => {
             />
           </div>
           <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-400">Instagram</label>
+            <input
+              type="text"
+              name="instagram"
+              value={formValues.instagram}
+              onChange={handleChange}
+              className="w-full p-2 mt-1 bg-gray-700 rounded border border-gray-600"
+            />
+          </div>
+          <div className="mb-4">
             <label className="block text-sm font-medium text-gray-400">{strings.years}</label>
             <input
               type="text"
@@ -247,11 +268,6 @@ const EditGeneralInformation: React.FC = () => {
           {strings.saveAll}
         </button>
       </form>
-      {alertVisible && (
-        <div className="mt-4 p-2 bg-green-600 text-white rounded">
-          Dados salvos com sucesso!
-        </div>
-      )}
     </div>
   );
 };

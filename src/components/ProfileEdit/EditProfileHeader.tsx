@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { updateProfile, getAuth, User } from 'firebase/auth';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { getUserData } from '../../services/firebaseService';
 import { firestore, storage } from '../../firebaseConfig';
-import { Alert, Snackbar } from '@mui/material';
+import { Alert, Snackbar, CircularProgress } from '@mui/material';
 
 const EditProfileHeader: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -77,15 +77,15 @@ const EditProfileHeader: React.FC = () => {
     <div className="bg-gray-800 text-white rounded-lg shadow-md p-6 mb-4">
       <Snackbar open={alertVisible} autoHideDuration={3000} onClose={() => setAlertVisible(false)}>
         <Alert onClose={() => setAlertVisible(false)} severity="success" sx={{ width: '100%' }}>
-          Foto de Perfil alterada com Sucesso.!
+          Foto de Perfil alterada com sucesso!
         </Alert>
       </Snackbar>
       <div className="flex flex-col items-center">
         {isLoading ? (
-          <div>Loading...</div>
+          <CircularProgress color="inherit" />
         ) : (
           <>
-            <img src={profilePictureUrl} alt="Profile" className="w-32 h-32 rounded-full object-cover mb-4" />
+            <img src={profilePictureUrl} alt="Profile" className="w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover mb-4" />
             <label className="bg-blue-600 text-white p-2 rounded cursor-pointer">
               Alterar Foto
               <input type="file" onChange={handlePictureChange} className="hidden" />

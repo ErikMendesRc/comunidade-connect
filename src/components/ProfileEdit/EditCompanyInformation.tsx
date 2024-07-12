@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { getAuth, User } from 'firebase/auth';
 import { getUserData, updateUserProfile } from '../../services/firebaseService';
 import useStrings from '../../hooks/useStrings';
+import { Alert, Snackbar, CircularProgress } from '@mui/material';
 
 const EditCompanyInformation: React.FC = () => {
   const strings = useStrings().editCompanyInformation;
@@ -74,11 +75,20 @@ const EditCompanyInformation: React.FC = () => {
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-32">
+        <CircularProgress color="inherit" />
+      </div>
+    );
   }
 
   return (
     <div className="bg-gray-800 text-white rounded-lg shadow-md p-6 mb-4">
+      <Snackbar open={alertVisible} autoHideDuration={3000} onClose={() => setAlertVisible(false)}>
+        <Alert onClose={() => setAlertVisible(false)} severity="success" sx={{ width: '100%' }}>
+          {strings.successMessage}
+        </Alert>
+      </Snackbar>
       <h2 className="text-2xl font-semibold mb-4">{strings.title}</h2>
       <form onSubmit={formik.handleSubmit}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -174,11 +184,6 @@ const EditCompanyInformation: React.FC = () => {
           {strings.save}
         </button>
       </form>
-      {alertVisible && (
-        <div className="mt-4 p-2 bg-green-600 text-white rounded">
-          {strings.successMessage}
-        </div>
-      )}
     </div>
   );
 };

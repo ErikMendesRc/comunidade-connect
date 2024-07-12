@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { getAuth, reauthenticateWithCredential, EmailAuthProvider, updatePassword } from 'firebase/auth';
 import useStrings from '../../hooks/useStrings';
+import { Snackbar, Alert, CircularProgress } from '@mui/material';
 
 const EditPasswordInformation: React.FC = () => {
   const strings = useStrings().editPasswordInformation;
@@ -47,11 +48,11 @@ const EditPasswordInformation: React.FC = () => {
 
   return (
     <div className="bg-gray-800 text-white rounded-lg shadow-md p-6 mb-4">
-      {alertVisible && (
-        <div className="mt-4 p-2 bg-green-600 text-white rounded">
+      <Snackbar open={alertVisible} autoHideDuration={3000} onClose={() => setAlertVisible(false)}>
+        <Alert onClose={() => setAlertVisible(false)} severity="success" sx={{ width: '100%' }}>
           {strings.successMessage}
-        </div>
-      )}
+        </Alert>
+      </Snackbar>
       <h2 className="text-2xl font-semibold mb-4">{strings.title}</h2>
       <form onSubmit={formik.handleSubmit}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -94,10 +95,10 @@ const EditPasswordInformation: React.FC = () => {
         </div>
         <button
           type="submit"
-          className="w-full p-2 mt-4 bg-blue-600 rounded hover:bg-blue-500 transition duration-200"
+          className="w-full p-2 mt-4 bg-blue-600 rounded hover:bg-blue-500 transition duration-200 flex justify-center items-center"
           disabled={formik.isSubmitting}
         >
-          {strings.save}
+          {formik.isSubmitting ? <CircularProgress size={24} color="inherit" /> : strings.save}
         </button>
       </form>
     </div>

@@ -12,20 +12,25 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ message, isCurrentUser, partici
   const displayName = participants[message.uid]?.name || 'Anonymous';
 
   return (
-    <div className={`chat ${isCurrentUser ? 'chat-end' : 'chat-start'} mb-4`}>
-      <div className="chat-image avatar">
-        <div className="w-10 rounded-full">
+    <div className={`flex ${isCurrentUser ? 'justify-end' : 'justify-start'} mb-4`}>
+      {!isCurrentUser && (
+        <div className="w-10 h-10 rounded-full overflow-hidden mr-2">
           <img alt="User Avatar" src={message.photoURL || 'https://via.placeholder.com/50'} />
         </div>
+      )}
+      <div className="max-w-xs bg-white text-black p-3 rounded-lg">
+        <div className="flex justify-between items-center mb-1">
+          <span className="text-sm font-bold">{displayName}</span>
+          <time className="text-xs opacity-50 ml-2">{formattedDate}</time>
+        </div>
+        <div>{message.text}</div>
+        <div className="text-xs opacity-50 mt-1">{isCurrentUser ? 'Entregue' : 'Visto'}</div>
       </div>
-      <div className="chat-header">
-        {displayName}
-        <time className="text-xs opacity-50 ml-2">{formattedDate}</time>
-      </div>
-      <div className="chat-bubble bg-white text-black">
-        {message.text}
-      </div>
-      <div className="chat-footer opacity-50">{isCurrentUser ? 'Entregue' : 'Visto'}</div>
+      {isCurrentUser && (
+        <div className="w-10 h-10 rounded-full overflow-hidden ml-2">
+          <img alt="User Avatar" src={message.photoURL || 'https://via.placeholder.com/50'} />
+        </div>
+      )}
     </div>
   );
 };

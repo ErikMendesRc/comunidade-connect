@@ -1,5 +1,3 @@
-// src/components/LoginForm.tsx
-
 import React, { useState } from 'react';
 import { signInWithGoogle, signInWithEmailAndPassword } from '../services/firebaseService';
 import { useNavigate } from 'react-router-dom';
@@ -41,12 +39,12 @@ const LoginForm: React.FC = () => {
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="peer block min-h-[auto] w-full rounded border border-gray-300 bg-neutral-light px-3 py-[0.32rem] leading-[2.15] text-black outline-none transition-all duration-200 ease-linear focus:border-highlight focus:bg-white focus:placeholder-opacity-100 peer-focus:text-primary dark:bg-neutral-dark dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:bg-neutral-dark dark:peer-focus:text-white"
+          className="peer block min-h-[auto] w-full rounded border border-gray-300 bg-neutral-light px-3 py-3 leading-6 text-black outline-none transition-all duration-200 ease-linear focus:border-highlight focus:bg-white focus:placeholder-opacity-100 peer-focus:text-primary dark:bg-neutral-dark dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:bg-neutral-dark dark:peer-focus:text-white"
           placeholder=" "
         />
         <label
           htmlFor="email"
-          className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-highlight dark:text-neutral-400"
+          className="pointer-events-none absolute left-3 top-3 mb-0 max-w-[90%] truncate pt-1 leading-6 text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:text-highlight dark:text-neutral-400"
         >
           {registerForm.email}
         </label>
@@ -57,12 +55,12 @@ const LoginForm: React.FC = () => {
           id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="peer block min-h-[auto] w-full rounded border border-gray-300 bg-neutral-light px-3 py-[0.32rem] leading-[2.15] text-black outline-none transition-all duration-200 ease-linear focus:border-highlight focus:bg-white focus:placeholder-opacity-100 peer-focus:text-primary dark:bg-neutral-dark dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:bg-neutral-dark dark:peer-focus:text-white"
+          className="peer block min-h-[auto] w-full rounded border border-gray-300 bg-neutral-light px-3 py-3 leading-6 text-black outline-none transition-all duration-200 ease-linear focus:border-highlight focus:bg-white focus:placeholder-opacity-100 peer-focus:text-primary dark:bg-neutral-dark dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:bg-neutral-dark dark:peer-focus:text-white"
           placeholder=" "
         />
         <label
           htmlFor="password"
-          className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-highlight dark:text-neutral-400"
+          className="pointer-events-none absolute left-3 top-3 mb-0 max-w-[90%] truncate pt-1 leading-6 text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:text-highlight dark:text-neutral-400"
         >
           {registerForm.password}
         </label>

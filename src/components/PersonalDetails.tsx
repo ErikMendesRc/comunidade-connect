@@ -19,7 +19,7 @@ const PersonalDetails: React.FC<{ formData: any, handleChange: any, formik: any 
               type="text"
               value={formData.name}
               onChange={handleChange}
-              onBlur={handleChange} // Adicionar onBlur para validação no blur
+              onBlur={formik.handleBlur}
               className={`bg-gray-50 border ${formik.touched.name && formik.errors.name ? 'border-red-500' : 'border-gray-300'} text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full pl-10 p-2.5 dark:bg-neutral-dark dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-highlight dark:focus:border-highlight`}
               placeholder={registerForm.enterName}
             />
@@ -39,7 +39,7 @@ const PersonalDetails: React.FC<{ formData: any, handleChange: any, formik: any 
               type="email"
               value={formData.email}
               onChange={handleChange}
-              onBlur={handleChange} // Adicionar onBlur para validação no blur
+              onBlur={formik.handleBlur}
               className={`bg-gray-50 border ${formik.touched.email && formik.errors.email ? 'border-red-500' : 'border-gray-300'} text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full pl-10 p-2.5 dark:bg-neutral-dark dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-highlight dark:focus:border-highlight`}
               placeholder={registerForm.enterEmail}
             />
@@ -59,7 +59,7 @@ const PersonalDetails: React.FC<{ formData: any, handleChange: any, formik: any 
               type="text"
               value={formData.contact}
               onChange={handleChange}
-              onBlur={handleChange} // Adicionar onBlur para validação no blur
+              onBlur={formik.handleBlur}
               className={`bg-gray-50 border ${formik.touched.contact && formik.errors.contact ? 'border-red-500' : 'border-gray-300'} text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full pl-10 p-2.5 dark:bg-neutral-dark dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-highlight dark:focus:border-highlight`}
               placeholder={registerForm.enterPhone}
             />
@@ -79,7 +79,7 @@ const PersonalDetails: React.FC<{ formData: any, handleChange: any, formik: any 
               type="password"
               value={formData.password}
               onChange={handleChange}
-              onBlur={handleChange} // Adicionar onBlur para validação no blur
+              onBlur={formik.handleBlur}
               className={`bg-gray-50 border ${formik.touched.password && formik.errors.password ? 'border-red-500' : 'border-gray-300'} text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full pl-10 p-2.5 dark:bg-neutral-dark dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-highlight dark:focus:border-highlight`}
               placeholder={registerForm.enterPassword}
             />
@@ -99,7 +99,7 @@ const PersonalDetails: React.FC<{ formData: any, handleChange: any, formik: any 
               type="password"
               value={formData.confirmPassword}
               onChange={handleChange}
-              onBlur={handleChange} // Adicionar onBlur para validação no blur
+              onBlur={formik.handleBlur}
               className={`bg-gray-50 border ${formik.touched.confirmPassword && formik.errors.confirmPassword ? 'border-red-500' : 'border-gray-300'} text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full pl-10 p-2.5 dark:bg-neutral-dark dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-highlight dark:focus:border-highlight`}
               placeholder={registerForm.enterConfirmPassword}
             />

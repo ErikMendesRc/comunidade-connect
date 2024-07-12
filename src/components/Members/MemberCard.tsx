@@ -26,7 +26,6 @@ const MemberCard: React.FC<MemberCardProps> = ({ user }) => {
           navigate(`/message/${existingChat.id}`);
         } else {
           const chatId = await createChat(currentUser.uid, otherUserId);
-          console.log('Chat criado com sucesso:', chatId);
           navigate(`/message/${chatId}`);
         }
       }
@@ -36,7 +35,7 @@ const MemberCard: React.FC<MemberCardProps> = ({ user }) => {
   };
 
   return (
-    <div className="max-w-sm bg-gray-800 text-white shadow-lg rounded-lg overflow-hidden my-4 relative flex flex-col justify-between">
+    <div className="bg-gray-800 text-white shadow-lg rounded-lg overflow-hidden my-4 relative flex flex-col justify-between">
       <div className="absolute top-2 right-2">
         <FontAwesomeIcon icon={faCircle} className={`h-4 w-4 ${userStatusColor}`} />
       </div>

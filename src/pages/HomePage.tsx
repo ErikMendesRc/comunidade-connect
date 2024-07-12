@@ -52,7 +52,7 @@ const HomePage: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid gap-6 text-center md:grid-cols-2 lg:grid-cols-3 px-4 md:px-6 lg:px-8">
+        <div className="grid gap-6 text-center sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-4 md:px-6 lg:px-8">
           {testimonialsList.map((review, index) => (
             <TestimonialCard
               key={index}

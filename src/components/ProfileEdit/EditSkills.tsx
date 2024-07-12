@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAuth, User } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
-import { Alert, Snackbar, Chip, IconButton } from '@mui/material';
+import { Alert, Snackbar, Chip, IconButton, CircularProgress } from '@mui/material';
 import { AddCircle } from '@mui/icons-material';
 import { firestore } from '../../firebaseConfig';
 import { getUserData } from '../../services/firebaseService';
@@ -60,7 +60,11 @@ const EditSkills: React.FC = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-32">
+        <CircularProgress color="inherit" />
+      </div>
+    );
   }
 
   return (
