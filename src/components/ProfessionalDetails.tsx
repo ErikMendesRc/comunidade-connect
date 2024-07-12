@@ -1,6 +1,6 @@
 import React from 'react';
 import useStrings from '../hooks/useStrings';
-import { FaMapMarkerAlt, FaBuilding, FaUserTie, FaCalendarAlt, FaLinkedin } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaBuilding, FaUserTie, FaCalendarAlt } from 'react-icons/fa';
 
 const ProfessionalDetails: React.FC<{ formData: any, handleChange: any, formik: any }> = ({ formData, handleChange, formik }) => {
   const { registerForm } = useStrings();
@@ -85,26 +85,6 @@ const ProfessionalDetails: React.FC<{ formData: any, handleChange: any, formik: 
             />
             {formik.touched.years && formik.errors.years ? (
               <div className="text-red-500 text-sm mt-1">{formik.errors.years}</div>
-            ) : null}
-          </div>
-        </div>
-        <div>
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{registerForm.linkedin}</label>
-          <div className="relative">
-            <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <FaLinkedin className="text-gray-400" />
-            </span>
-            <input
-              name="linkedin"
-              type="text"
-              value={formData.linkedin}
-              onChange={handleChange}
-              onBlur={formik.handleBlur}
-              className={`bg-gray-50 border ${formik.touched.linkedin && formik.errors.linkedin ? 'border-red-500' : 'border-gray-300'} text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full pl-10 p-2.5 dark:bg-neutral-dark dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-highlight dark:focus:border-highlight`}
-              placeholder={registerForm.enterLinkedin}
-            />
-            {formik.touched.linkedin && formik.errors.linkedin ? (
-              <div className="text-red-500 text-sm mt-1">{formik.errors.linkedin}</div>
             ) : null}
           </div>
         </div>
