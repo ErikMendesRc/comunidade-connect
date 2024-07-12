@@ -1,0 +1,30 @@
+export interface User {
+  uid: string;
+  name: string;
+  lastName: string;
+  role: string;
+  company: string;
+  department: string;
+  city: string;
+  country: string;
+  email: string;
+  profilePicture?: string;
+  bio: string;
+  birthday: string;
+  linkedin: string;
+  skills: string[];
+  hobbies: string[];
+  years: string;
+  annualTurnover: string;
+  founded: string;
+  headquarters: string;
+  industry: string;
+  numberOfEmployees: string;
+  website: string;
+  zipCode: string;
+  contact: string;
+  companyName: string;
+  updatedAt: string;
+  status?: 'online' | 'offline';
+  superadmin: boolean;
+}
