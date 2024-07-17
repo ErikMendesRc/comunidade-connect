@@ -29,7 +29,7 @@ const MultiStepForm: React.FC = () => {
     company: Yup.string().required('Empresa é obrigatória'),
     role: Yup.string().required('Cargo é obrigatório'),
     years: Yup.string().required('Anos de experiência são obrigatórios'),
-    linkedin: Yup.string().required('LinkedIn é obrigatório'),
+    linkedin: Yup.string()
   });
 
   const formik = useFormik({
