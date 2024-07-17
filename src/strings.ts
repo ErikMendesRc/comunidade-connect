@@ -110,6 +110,8 @@ const strings = {
     login: "Entrar",
     address:"Endereço",
     saveAll: "Salvar",
+    forgotPassword: 'Esqueceu sua senha?',
+    resetPassword: 'Recuperar Senha',
 
     validation: {
       email: {
