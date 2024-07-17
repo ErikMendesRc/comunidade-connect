@@ -4,7 +4,7 @@ import PersonalDetails from '../components/PersonalDetails';
 import ProfessionalDetails from '../components/ProfessionalDetails';
 import Alert from '../components/Alert';
 import { useFormik } from 'formik';
-import { checkWhitelist, createUser, saveUserData, signInWithGoogle, signOut } from '../services/firebaseService';
+import { checkWhitelist, createUser, saveUserData, signInWithGoogle, signOut, isNewUser, getUserId } from '../services/firebaseService';
 import { useNavigate } from 'react-router-dom';
 
 const MultiStepForm: React.FC = () => {
@@ -29,7 +29,7 @@ const MultiStepForm: React.FC = () => {
     company: Yup.string().required('Empresa é obrigatória'),
     role: Yup.string().required('Cargo é obrigatório'),
     years: Yup.string().required('Anos de experiência são obrigatórios'),
-    linkedin: Yup.string()
+    linkedin: Yup.string().url('LinkedIn deve ser uma URL válida'),
   });
 
   const formik = useFormik({
@@ -69,10 +69,19 @@ const MultiStepForm: React.FC = () => {
           linkedin: values.linkedin,
         });
 
+        const newUser = await isNewUser(user.uid);
         setAlert({ type: 'success', message: 'Usuário cadastrado com sucesso!' });
-        navigate('/edit-profile');
-      } catch (error) {
-        setAlert({ type: 'error', message: 'Erro ao cadastrar usuário.' });
+        if (newUser) {
+          navigate('/edit-profile');
+        } else {
+          navigate('/profile');
+        }
+      } catch (error: any) {
+        if (error.code === 'auth/email-already-in-use') {
+          setAlert({ type: 'error', message: 'Este email já está registrado. Por favor, use outro email ou faça login.' });
+        } else {
+          setAlert({ type: 'error', message: 'Erro ao cadastrar usuário.' });
+        }
         console.error('Erro ao cadastrar usuário:', error);
       }
     },
@@ -97,9 +106,14 @@ const MultiStepForm: React.FC = () => {
         email: user.email,
       });
 
+      const newUser = await isNewUser(user.uid);
       setAlert({ type: 'success', message: 'Usuário cadastrado com sucesso usando Google!' });
-      navigate('/edit-profile');
-    } catch (error) {
+      if (newUser) {
+        navigate('/edit-profile');
+      } else {
+        navigate('/profile');
+      }
+    } catch (error: any) {
       setAlert({ type: 'error', message: 'Erro ao fazer login com Google.' });
       console.error('Erro ao fazer login com Google:', error);
     }

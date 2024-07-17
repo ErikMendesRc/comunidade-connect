@@ -1,4 +1,4 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, User, signInWithEmailAndPassword as firebaseSignInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, User, signInWithEmailAndPassword as firebaseSignInWithEmailAndPassword, updateProfile, sendPasswordResetEmail as firebaseSendPasswordResetEmail } from "firebase/auth";
 import { ref, uploadBytes, getDownloadURL, getStorage } from "firebase/storage";
 import { getFirestore, collection, query, where, getDocs, setDoc, doc, updateDoc, serverTimestamp, onSnapshot, getDoc, orderBy, arrayUnion, arrayRemove } from "firebase/firestore";
 import { getDatabase, ref as dbRef, onDisconnect, onValue, set } from 'firebase/database';
@@ -329,4 +329,26 @@ export const getAllChats = async (userId: string): Promise<Chat[]> => {
         return userDoc.data();
     }
     return null;
+};
+
+export const isNewUser = async (userId: string) => {
+  const userDoc = await getDoc(doc(db, "users", userId));
+  return !userDoc.exists();
+};
+
+export const getUserId = async () => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  return user ? user.uid : null;
+};
+
+export const sendPasswordResetEmail = async (email: string) => {
+  const auth = getAuth();
+  try {
+    await firebaseSendPasswordResetEmail(auth, email);
+    console.log('Password reset email sent successfully');
+  } catch (error) {
+    console.error('Error sending password reset email:', error);
+    throw error;
+  }
 };
