@@ -4,7 +4,7 @@ import PersonalDetails from '../components/PersonalDetails';
 import ProfessionalDetails from '../components/ProfessionalDetails';
 import Alert from '../components/Alert';
 import { useFormik } from 'formik';
-import { checkWhitelist, createUser, saveUserData, signInWithGoogle, signOut, isNewUser, getUserId } from '../services/firebaseService';
+import { createUser, saveUserData, signInWithGoogle, signOut, isNewUser } from '../services/firebaseService';
 import { useNavigate } from 'react-router-dom';
 
 const MultiStepForm: React.FC = () => {
@@ -49,12 +49,6 @@ const MultiStepForm: React.FC = () => {
     validationSchema: validationSchema,
     onSubmit: async (values, { setErrors }) => {
       try {
-        const isWhitelisted = await checkWhitelist(values.email);
-        if (!isWhitelisted) {
-          setAlert({ type: 'error', message: 'Você não está autorizado a se cadastrar na plataforma.' });
-          return;
-        }
-
         const user = await createUser(values.email, values.password);
 
         await saveUserData(user, {
@@ -90,13 +84,6 @@ const MultiStepForm: React.FC = () => {
   const handleGoogleLogin = async () => {
     try {
       const user = await signInWithGoogle();
-
-      const isWhitelisted = await checkWhitelist(user.email!);
-      if (!isWhitelisted) {
-        setAlert({ type: 'error', message: 'Você não está autorizado a se cadastrar na plataforma.' });
-        await signOut();
-        return;
-      }
 
       formik.setFieldValue('email', user.email);
       formik.setFieldValue('name', user.displayName);
